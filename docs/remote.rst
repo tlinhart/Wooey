@@ -7,4 +7,4 @@ starting point for a non-local server. In short, you need to change your
 storage settings like such:
 
 STATICFILES\_STORAGE = DEFAULT\_FILE\_STORAGE =
-'wooey.wooeystorage.CachedS3BotoStorage' WOOEY\_EPHEMERAL\_FILES = True
+'wooey.wooeystorage.CachedS3Boto3Storage' WOOEY\_EPHEMERAL\_FILES = True

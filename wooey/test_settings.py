@@ -77,7 +77,7 @@ WOOEY_CELERY = False
 WOOEY_FILE_DIR = 'wooey_test'
 
 if os.environ.get('WOOEY_TEST_S3'):
-    STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'wooey.wooeystorage.CachedS3BotoStorage'
+    STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'wooey.wooeystorage.CachedS3Boto3Storage'
 
     INSTALLED_APPS += (
         'storages',

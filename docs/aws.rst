@@ -88,7 +88,7 @@ Steps to Follow
 
         STATIC_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
         MEDIA_URL = '/user-uploads/'
-        STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'wooey.wooeystorage.CachedS3BotoStorage'
+        STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'wooey.wooeystorage.CachedS3Boto3Storage'
         WOOEY_EPHEMERAL_FILES = True
 
 In the above step, make sure you change wooey.herokuapp.com to your app's address.

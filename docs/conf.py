@@ -47,7 +47,7 @@ MOCK_MODULES = [
     'boto.utils',
     'storages',
     'storages.backends',
-    'storages.backends.s3boto',
+    'storages.backends.s3boto3',
 ]
 
 for mod_name in MOCK_MODULES:
