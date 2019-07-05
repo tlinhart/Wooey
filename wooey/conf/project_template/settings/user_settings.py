@@ -101,8 +101,6 @@ STATIC_URL = '/static/'
 ## for production environments, django-storages abstracts away much of the difficulty of various storage engines.
 ## Here is an example for hosting static and user generated content with S3
 
-# from boto.s3.connection import VHostCallingFormat
-#
 # INSTALLED_APPS += (
 #     'storages',
 #     'collectfast',

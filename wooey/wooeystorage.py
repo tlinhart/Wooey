@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 import os
 
-from boto.utils import parse_ts
 from django.core.files.storage import get_storage_class, FileSystemStorage
 from storages.backends.s3boto import S3Boto3Storage
 
@@ -23,14 +22,6 @@ class CachedS3BotoStorage(S3Boto3Storage):
         if name.endswith('.gz'):
             return original_file
         return original_file
-
-    def modified_time(self, name):
-        name = self._normalize_name(self._clean_name(name))
-        entry = self.entries.get(name)
-        if entry is None:
-            entry = self.bucket.get_key(self._encode_name(name))
-        # Parse the last_modified string to a local datetime object.
-        return parse_ts(entry.last_modified)
 
     def path(self, name):
         return self.local_storage.path(name)

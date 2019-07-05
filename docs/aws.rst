@@ -41,9 +41,6 @@ Steps to Follow
 
   ::
 
-        from boto.s3.connection import VHostCallingFormat
-
-
         INSTALLED_APPS += (
             'storages',
             'collectfast',
@@ -62,9 +59,6 @@ Steps to Follow
             "wooey.herokuapp.com",  # put your site here
         )
 
-
-        AWS_S3_CALLING_FORMAT = VHostCallingFormat
-        AWS_S3_ADDRESSING_STYLE = 'virtual'
 
         AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID', '')
         AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY', '')
