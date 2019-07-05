@@ -84,7 +84,8 @@ if os.environ.get('WOOEY_TEST_S3'):
         'storages',
     )
 
-    AWS_CALLING_FORMAT = VHostCallingFormat
+    AWS_S3_CALLING_FORMAT = VHostCallingFormat
+    AWS_S3_ADDRESSING_STYLE = 'virtual'
 
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
@@ -104,7 +105,7 @@ if os.environ.get('WOOEY_TEST_S3'):
 
     AWS_EXPIREY = 60 * 60 * 7
     AWS_HEADERS = {
-        'Cache-Control': 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIREY,
+        'CacheControl': 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIREY,
             AWS_EXPIREY)
     }
 

@@ -120,7 +120,8 @@ STATIC_URL = '/static/'
 #     "wooey.herokuapp.com",# put your site here
 # )
 #
-# AWS_CALLING_FORMAT = VHostCallingFormat
+# AWS_S3_CALLING_FORMAT = VHostCallingFormat
+# AWS_S3_ADDRESSING_STYLE = 'virtual'
 #
 # AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID', '')
 # AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY', '')
@@ -141,7 +142,7 @@ STATIC_URL = '/static/'
 #
 # AWS_EXPIREY = 60 * 60 * 7
 # AWS_HEADERS = {
-#     'Cache-Control': 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIREY,
+#     'CacheControl': 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIREY,
 #         AWS_EXPIREY)
 # }
 #

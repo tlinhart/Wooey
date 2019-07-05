@@ -4,13 +4,13 @@ import os
 
 from boto.utils import parse_ts
 from django.core.files.storage import get_storage_class, FileSystemStorage
-from storages.backends.s3boto import S3BotoStorage
+from storages.backends.s3boto import S3Boto3Storage
 
 from . import settings as wooey_settings
 
 # From https://github.com/jezdez/django_compressor/issues/100
 
-class CachedS3BotoStorage(S3BotoStorage):
+class CachedS3BotoStorage(S3Boto3Storage):
     def __init__(self, *args, **kwargs):
         if os.environ.get('TESTING', False):
             from .tests import config
