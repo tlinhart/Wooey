@@ -85,6 +85,7 @@ def get_latest_script(script_version):
     script_path = script_version.script_path
     local_storage = utils.get_storage(local=True)
     script_exists = local_storage.exists(script_path.name)
+    print('get latest scriot', script_path, script_exists)
     if not script_exists:
         local_storage.save(script_path.name, script_path.file)
         return True
@@ -92,12 +93,14 @@ def get_latest_script(script_version):
         # If script exists, make sure the version is valid, otherwise fetch a new one
         script_contents = local_storage.open(script_path.name).read()
         script_checksum = utils.get_checksum(buff=script_contents)
+        print('checking for new', script_contents, script_checksum, script_version.checksum)
         if script_checksum != script_version.checksum:
             tf = tempfile.TemporaryFile()
             with tf:
                 tf.write(script_contents)
                 tf.seek(0)
                 local_storage.delete(script_path.name)
+                print('saving new at', script_path.name)
                 local_storage.save(script_path.name, tf)
                 return True
     return False
@@ -109,6 +112,10 @@ def submit_script(**kwargs):
     resubmit = kwargs.pop('wooey_resubmit', False)
     from .models import WooeyJob, UserFile
     job = WooeyJob.objects.get(pk=job_id)
+
+    # make sure we have the script, otherwise download it. This can happen if we have an ephemeral file system or are
+    # executing jobs on a worker node.
+    get_latest_script(job.script_version)
 
     command = utils.get_job_commands(job=job)
     if resubmit:
@@ -124,10 +131,6 @@ def submit_script(**kwargs):
     job.save_path = cwd
 
     utils.mkdirs(abscwd)
-    # make sure we have the script, otherwise download it. This can happen if we have an ephemeral file system or are
-    # executing jobs on a worker node.
-    get_latest_script(job.script_version)
-
 
     job.status = WooeyJob.RUNNING
     job.save()
